@@ -1,0 +1,39 @@
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Logs and generated reports
+*.log
+reports/
+tmp/
+.private/
+
+# Host-specific state and local overrides
+docs/*.local.md
+config/*.local.*
+*.local.json
+*.local.yaml
+*.local.yml
+
+# Local secrets and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.mobileprovision
+credentials/
+secrets/
+auth.json
+
+# Language and package state
+.venv/
+node_modules/
+.mise.local.toml
+
+# Tool state
+.idea/
+.vscode/

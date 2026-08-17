@@ -1,0 +1,31 @@
+# Security-conscious interactive defaults. Never put secrets in this file.
+umask 077
+
+export EDITOR="${EDITOR:-vim}"
+export VISUAL="${VISUAL:-$EDITOR}"
+export PAGER="${PAGER:-less}"
+export LESS="${LESS:--FRX}"
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=50000
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt share_history
+
+autoload -Uz compinit
+mkdir -p "$HOME/.cache/zsh"
+# Ignore completion directories with unsafe ownership/modes instead of prompting.
+compinit -i -d "$HOME/.cache/zsh/zcompdump"
+
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
+
+alias ll='ls -lah'
+alias gs='git status --short --branch'
+alias agent-host='cd "$HOME/src/agent-host"'

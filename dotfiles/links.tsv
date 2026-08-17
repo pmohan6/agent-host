@@ -1,0 +1,7 @@
+# source path (relative to dotfiles/)<TAB>target path (relative to $HOME)
+zsh/zprofile	.zprofile
+zsh/zshrc	.zshrc
+tmux/tmux.conf	.tmux.conf
+git/gitconfig	.gitconfig
+git/ignore	.config/git/ignore
+../config/mise/config.toml	.config/mise/config.toml
