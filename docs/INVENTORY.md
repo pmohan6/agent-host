@@ -41,7 +41,8 @@ observations from a particular computer. Obtain live state with `make status`,
 
 - Shared command-line packages are declared in `Brewfile`
 - User runtimes are pinned in `config/mise/config.toml`
-- Dotfiles are linked only through `dotfiles/links.tsv`
+- Dotfiles are applied through chezmoi's `home/` source state; the authoritative
+  backing files and collision allowlist remain under `dotfiles/`
 - Agent harnesses, containers, and remote-access packages are added in separately
   reviewed phases
 

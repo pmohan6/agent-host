@@ -23,6 +23,22 @@ if command -v brew >/dev/null 2>&1; then
   HOMEBREW_NO_AUTO_UPDATE=1 brew bundle list --file "$REPO_ROOT/Brewfile" >/dev/null
 fi
 
+if [[ "$(tr -d '[:space:]' <"$REPO_ROOT/.chezmoiroot")" != "home" ]]; then
+  echo "Invalid .chezmoiroot; expected 'home'" >&2
+  exit 1
+fi
+
+if command -v chezmoi >/dev/null 2>&1; then
+  managed_targets="$(chezmoi --source "$REPO_ROOT" managed)"
+  while IFS=$'\t' read -r source_rel target_rel; do
+    [[ -z "$source_rel" || "$source_rel" == \#* ]] && continue
+    if ! printf '%s\n' "$managed_targets" | grep -Fxq "$target_rel"; then
+      echo "Chezmoi does not manage manifest target: $target_rel" >&2
+      exit 1
+    fi
+  done <"$REPO_ROOT/dotfiles/links.tsv"
+fi
+
 "$REPO_ROOT/scripts/security/check-public.sh"
 
 echo "Repository checks passed"

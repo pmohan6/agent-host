@@ -42,6 +42,23 @@ installation is intentionally separate:
 Run the admin phase while logged into the Homebrew-owning administrator account and
 only after reviewing the exact commit. Never run Homebrew as root.
 
+After the admin phase installs chezmoi, rerun the normal bootstrap. It initializes
+this checkout as chezmoi's source, safely applies the managed dotfile symlinks, and
+installs the pinned user runtimes:
+
+    ./bootstrap.sh --admin  # run as the Homebrew owner
+    ./bootstrap.sh          # run as the standard execution account
+
+The dotfile step refuses to replace an unknown existing target. Before chezmoi is
+available, the first user bootstrap uses a compatible symlink fallback; the next
+run adopts the same links with chezmoi.
+
+Daily dotfile commands:
+
+    chezmoi status
+    chezmoi diff
+    chezmoi apply
+
 ## Operations
 
 ```sh

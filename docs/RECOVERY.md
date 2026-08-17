@@ -48,7 +48,15 @@ make doctor
 ```
 
 This creates managed directories, links only known-absent dotfiles, and later
-installs pinned user runtimes.
+installs pinned user runtimes. When chezmoi is available from the Brewfile, the
+bootstrap initializes this checkout as its source and applies the dotfiles
+automatically. The collision preflight refuses to replace unknown existing files.
+
+To inspect or reapply dotfiles later:
+
+    chezmoi status
+    chezmoi diff
+    chezmoi apply
 
 ## 5. Restore credentials
 

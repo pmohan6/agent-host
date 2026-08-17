@@ -3,6 +3,7 @@
 
 brew "git"
 brew "gh"
+brew "chezmoi"
 brew "tmux"
 brew "jq"
 brew "ripgrep"

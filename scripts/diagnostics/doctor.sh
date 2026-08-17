@@ -67,7 +67,7 @@ else
   fail "Homebrew missing"
 fi
 
-for tool in git gh tmux jq rg fd fzf tree btop mise uv shellcheck shfmt; do
+for tool in git gh chezmoi tmux jq rg fd fzf tree btop mise uv shellcheck shfmt; do
   if command -v "$tool" >/dev/null 2>&1; then
     pass "$tool available"
   else
